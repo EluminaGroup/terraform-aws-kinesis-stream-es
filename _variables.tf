@@ -123,3 +123,31 @@ variable "kinesis_stream_bucket_name" {
   default     = "kinesis-logs-stream-backup-bucket"
   type        = string
 }
+
+variable "warm_instance_enabled" {
+  description = "Indicates whether ultrawarm nodes are enabled for the cluster."
+  type        = bool
+  default     = false
+}
+
+variable "warm_instance_type" {
+  description = "The type of EC2 instances to run for each warm node. A list of available instance types can you find at https://aws.amazon.com/en/elasticsearch-service/pricing/#UltraWarm_pricing"
+  type        = string
+  default     = "ultrawarm1.large.elasticsearch"
+}
+
+variable "warm_instance_count" {
+  description = "The number of dedicated warm nodes in the cluster."
+  type        = number
+  default     = 1
+}
+
+variable "ebs_volume_type" {
+  type    = string
+  default = null
+}
+
+variable "ebs_iops" {
+  type    = number
+  default = null
+}
