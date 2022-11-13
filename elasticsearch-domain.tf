@@ -53,12 +53,12 @@ resource "aws_elasticsearch_domain" "es" {
   }
 
   encrypt_at_rest {
-    enabled = true
+    enabled = var.elasticsearch_encrypt_at_rest
     kms_key_id = aws_kms_key.es.key_id
   }
 
   node_to_node_encryption {
-    enabled = true
+    enabled = var.elasticsearch_node_to_node_encryption
   }
 
   domain_endpoint_options {
