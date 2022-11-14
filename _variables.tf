@@ -172,3 +172,19 @@ variable "hot_instance_count" {
   type        = number
   default     = 1
 }
+
+variable "cluster_domain" {
+  type = string
+}
+
+variable "zone_id" {
+  type = string
+}
+
+variable "custom_endpoint_certificate_arn" {
+  type = string
+}
+
+variable "zone_name" {
+  type = string
+}
