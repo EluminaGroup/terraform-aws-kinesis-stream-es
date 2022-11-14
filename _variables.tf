@@ -17,18 +17,6 @@ variable "elasticsearch_name" {
   type        = string
 }
 
-variable "elasticsearch_instance_type" {
-  description = "(Optional) Instance type of data nodes in the cluster."
-  default     = "r5.large.elasticsearch"
-  type        = string
-}
-
-variable "elasticsearch_instance_count" {
-  description = "(Optional) Number of instances in the cluster."
-  default     = 3
-  type        = number
-}
-
 variable "elasticsearch_version" {
   description = "(Optional) The version of Elasticsearch to deploy. Defaults to 7.4"
   default     = "7.4"
