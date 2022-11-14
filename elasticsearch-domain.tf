@@ -8,7 +8,7 @@ resource "aws_kms_alias" "name" {
   count = var.elasticsearch_enabled ? 1 : 0
 
   name = "alias/${var.elasticsearch_name}"
-  target_key_id = aws_kms_key.es.key_id
+  target_key_id = aws_kms_key.es[count.index].key_id
 }
 
 resource "aws_kms_key" "es" {
@@ -24,9 +24,9 @@ resource "aws_elasticsearch_domain" "es" {
   elasticsearch_version = var.elasticsearch_version
 
   cluster_config {
-    dedicated_master_enabled = var.master_instance_enabled
-    dedicated_master_count   = var.master_instance_enabled ? var.master_instance_count : null
-    dedicated_master_type    = var.master_instance_enabled ? var.master_instance_type : null
+    dedicated_master_enabled = var.elasticsearch_dedicated_master_enabled
+    dedicated_master_count   = var.elasticsearch_dedicated_master_enabled ? var.elasticsearch_dedicated_master_count : null
+    dedicated_master_type    = var.elasticsearch_dedicated_master_enabled ? var.elasticsearch_dedicated_master_type : null
 
     instance_count = var.hot_instance_count
     instance_type  = var.hot_instance_type
@@ -54,7 +54,7 @@ resource "aws_elasticsearch_domain" "es" {
 
   encrypt_at_rest {
     enabled = var.elasticsearch_encrypt_at_rest
-    kms_key_id = aws_kms_key.es.key_id
+    kms_key_id = aws_kms_key.es[count.index].key_id
   }
 
   node_to_node_encryption {

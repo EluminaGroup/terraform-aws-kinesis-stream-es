@@ -142,6 +142,16 @@ variable "warm_instance_count" {
   default     = 1
 }
 
+variable "ebs_enabled" {
+  type    = bool
+  default = true
+}
+
+variable "ebs_volume_size" {
+  type    = number
+  default = 10
+}
+
 variable "ebs_volume_type" {
   type    = string
   default = null
@@ -155,4 +165,22 @@ variable "ebs_iops" {
 variable "vpn_cidr" {
   type = string
   default = ""
+}
+
+variable "availability_zones" {
+  description = "The number of availability zones for the OpenSearch cluster. Valid values: 1, 2 or 3."
+  type        = number
+  default     = 1
+}
+
+variable "hot_instance_type" {
+  description = "The type of EC2 instances to run for each hot node. A list of available instance types can you find at https://aws.amazon.com/en/opensearch-service/pricing/#On-Demand_instance_pricing"
+  type        = string
+  default     = "r6gd.large.elasticsearch"
+}
+
+variable "hot_instance_count" {
+  description = "The number of dedicated hot nodes in the cluster."
+  type        = number
+  default     = 1
 }
