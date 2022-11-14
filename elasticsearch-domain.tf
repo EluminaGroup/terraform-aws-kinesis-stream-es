@@ -61,12 +61,9 @@ resource "aws_elasticsearch_domain" "es" {
     enabled = var.elasticsearch_node_to_node_encryption
   }
   domain_endpoint_options {
-    enforce_https       = true
+    enforce_https       = false
     tls_security_policy = "Policy-Min-TLS-1-2-2019-07"
 
-    custom_endpoint_enabled         = true
-    custom_endpoint                 = "${var.cluster_domain}"
-    custom_endpoint_certificate_arn = var.custom_endpoint_certificate_arn
   }
   advanced_security_options {
     enabled = false
@@ -94,15 +91,4 @@ resource "aws_elasticsearch_domain" "es" {
   })
 
   depends_on = [aws_iam_service_linked_role.es]
-}
-
-resource "aws_route53_record" "es" {
-  count = var.elasticsearch_enabled ? 1 : 0
-
-  zone_id = var.zone_id
-  name    = var.cluster_domain
-  type    = "CNAME"
-  ttl     = "60"
-
-  records = [aws_elasticsearch_domain.es[0].endpoint]
 }
