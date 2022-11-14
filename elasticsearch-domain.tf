@@ -46,10 +46,8 @@ resource "aws_elasticsearch_domain" "es" {
   }
 
   ebs_options {
-    ebs_enabled = var.ebs_enabled
+    ebs_enabled = true
     volume_size = var.elasticsearch_volume_size
-    volume_type = var.ebs_volume_type
-    iops        = var.ebs_iops
   }
 
   encrypt_at_rest {

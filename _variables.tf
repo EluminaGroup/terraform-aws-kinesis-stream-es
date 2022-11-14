@@ -130,26 +130,6 @@ variable "warm_instance_count" {
   default     = 1
 }
 
-variable "ebs_enabled" {
-  type    = bool
-  default = true
-}
-
-variable "ebs_volume_size" {
-  type    = number
-  default = 10
-}
-
-variable "ebs_volume_type" {
-  type    = string
-  default = null
-}
-
-variable "ebs_iops" {
-  type    = number
-  default = null
-}
-
 variable "vpn_cidr" {
   type = string
   default = ""
