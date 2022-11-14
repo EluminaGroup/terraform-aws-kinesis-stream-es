@@ -151,3 +151,8 @@ variable "ebs_iops" {
   type    = number
   default = null
 }
+
+variable "vpn_cidr" {
+  type = string
+  default = ""
+}
